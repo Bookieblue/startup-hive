@@ -41,7 +41,7 @@ const FormSchema = z
       .min(1, "Password confirmation is required")
       .min(8, "Password must have 8 characters"),
     country: z
-    .string().min(1, "Please select a country to display.")
+    .string().min(1, "Please select a country to display")
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
