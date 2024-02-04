@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {} from "@/components/ui/input";
 import ConfirmOtpForm from "@/components/forms/confirmOtp";
 
 const ConfirmOtp = () => {
