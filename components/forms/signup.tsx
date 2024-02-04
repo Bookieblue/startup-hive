@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Form,
   FormControl,
@@ -6,67 +6,65 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useToast, toast } from "@/components/ui/use-toast"
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Input } from "../ui/input";
-import Button from "../ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from '../ui/form';
+import { useToast, toast } from '@/components/ui/use-toast';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Input } from '../ui/input';
+import Button from '../ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { AFRICAN_COUNTRIES } from "@/app/constants";
-
+} from '@/components/ui/select';
+import { AFRICAN_COUNTRIES } from '@/app/constants';
 
 const FormSchema = z
   .object({
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
+    firstName: z.string().min(1, 'First name is required'),
+    lastName: z.string().min(1, 'Last name is required'),
     email: z
       .string()
-      .min(1, "Email is required")
-      .email("Incorrect email address"),
+      .min(1, 'Email is required')
+      .email('Incorrect email address'),
     password: z
       .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have 8 characters"),
+      .min(1, 'Password is required')
+      .min(8, 'Password must have 8 characters'),
     confirmPassword: z
       .string()
-      .min(1, "Password confirmation is required")
-      .min(8, "Password must have 8 characters"),
-    country: z
-    .string().min(1, "Please select a country to display")
+      .min(1, 'Password confirmation is required')
+      .min(8, 'Password must have 8 characters'),
+    country: z.string().min(1, 'Please select a country to display'),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    message: "Password do not match",
+    path: ['confirmPassword'],
+    message: 'Password do not match',
   });
 
 const SignUpForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      country:"",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      country: '',
     },
   });
-  
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     console.log(values);
     toast({
-      title: "Submitted succesfully",
-      description: "Your details has been submitted.",
-    })
+      title: 'Submitted succesfully',
+      description: 'Your details has been submitted.',
+    });
   };
 
   return (
@@ -139,9 +137,9 @@ const SignUpForm = () => {
                   </FormControl>
                   <SelectContent position="popper">
                     <ScrollArea className="w-full h-40 px-4">
-                    {AFRICAN_COUNTRIES.map((country) =>(
-                      <SelectItem value={country}>{country}</SelectItem>
-                    ) )}
+                      {AFRICAN_COUNTRIES.map((country) => (
+                        <SelectItem value={country}>{country}</SelectItem>
+                      ))}
                     </ScrollArea>
                   </SelectContent>
                 </Select>

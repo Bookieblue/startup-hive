@@ -1,11 +1,9 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import LoginForm from "@/components/forms/login";
-
-
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import LoginForm from '@/components/forms/login';
 
 const Login = () => {
   return (
@@ -16,7 +14,7 @@ const Login = () => {
             Login
           </h2>
           <p className="regular-18 lg:regular-20 ">
-            Note! If you own a Startup, publish it from{" "}
+            Note! If you own a Startup, publish it from{' '}
             <Link href="/" className="underline text-lightred-50">
               here
             </Link>
@@ -26,7 +24,7 @@ const Login = () => {
           </p>
           <LoginForm />
           <p className="medium-16 mt-10 mb-20">
-            Don’t have an account?{" "}
+            Don’t have an account?{' '}
             <Link href="./signup" className="text-lightred-50">
               Create account here
             </Link>

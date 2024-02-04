@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Navbar from "@/components/navbar";
-import { Toaster } from "@/components/ui/toaster";
-
+import type { Metadata } from 'next';
+import './globals.css';
+import Navbar from '@/components/navbar';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: "Startup Hive App",
-  description: "Hive for startup in Africa",
+  title: 'Startup Hive App',
+  description: 'Hive for startup in Africa',
 };
 
 export default function RootLayout({
@@ -18,8 +17,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main className="relative 
-        overflow-hidden">
+        <main
+          className="relative 
+        overflow-hidden"
+        >
           {children}
         </main>
         <Toaster />

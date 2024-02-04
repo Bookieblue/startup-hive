@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import ConfirmOtpForm from "@/components/forms/confirmOtp";
+import Image from 'next/image';
+import Link from 'next/link';
+import ConfirmOtpForm from '@/components/forms/confirmOtp';
 
 const ConfirmOtp = () => {
-
   return (
     <section className='max-container padding-container flex flex-col mt-20 bg-cream-50 gap-20 pt-5 lg:px-24 md:gap-28 lg:pt-10 xl:flex-row"'>
       <div className="relative">
@@ -21,7 +20,7 @@ const ConfirmOtp = () => {
           </p>
           <ConfirmOtpForm />
           <p className="medium-16 mt-10 mb-28 lg:mb-48">
-            Don’t get OTP?{" "}
+            Don’t get OTP?{' '}
             <Link href="/" className="text-lightred-50">
               Resend here
             </Link>

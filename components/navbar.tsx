@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import Button from "./ui/button"
+import Image from 'next/image';
+import Link from 'next/link';
+import Button from './ui/button';
 
 const Navbar = () => {
   return (
@@ -9,17 +9,23 @@ const Navbar = () => {
    padding-container w-full z-30 py-8 bg-cream-50 fixed 2xl:relative "
     >
       <Link href="/">
-        <Image src="/logo.svg" alt="logo" width={253} height={29} className="w-[80%] lg:full" />
+        <Image
+          src="/logo.svg"
+          alt="logo"
+          width={253}
+          height={29}
+          className="w-[80%] lg:full"
+        />
       </Link>
       <div className="flexEnd gap-5 lg:gap-10">
-          <Image
-            src="./search-icon.svg"
-            alt="arrowdown"
-            width={20}
-            height={20}
-            className="cursor-pointer"
-          />
-          <ul className="hidden h-full gap-5 lg:flex">
+        <Image
+          src="./search-icon.svg"
+          alt="arrowdown"
+          width={20}
+          height={20}
+          className="cursor-pointer"
+        />
+        <ul className="hidden h-full gap-5 lg:flex">
           <div className="flex gap-1 cursor-pointer">
             <Image
               src="./african-icon.svg"
