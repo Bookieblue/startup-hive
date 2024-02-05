@@ -18,7 +18,7 @@ bun dev
 
 - Create a .env.local file in the project directory and add the following variable:
   `    NEXT_PUBLIC_LOCAL_BASE_URL=
-  NEXT_PUBLIC_PRODUCTION_BASE_URL=`
+NEXT_PUBLIC_PRODUCTION_BASE_URL=`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
