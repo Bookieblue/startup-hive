@@ -138,7 +138,7 @@ const SignUpForm = () => {
                   <SelectContent position="popper">
                     <ScrollArea className="w-full h-40 px-4">
                       {AFRICAN_COUNTRIES.map((country) => (
-                        <SelectItem value={country}>{country}</SelectItem>
+                        <SelectItem key={country} value={country}>{country}</SelectItem>
                       ))}
                     </ScrollArea>
                   </SelectContent>
