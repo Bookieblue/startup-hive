@@ -1,17 +1,17 @@
-import React, { FC, ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useForm, FormProvider } from "react-hook-form";
+import React, { FC, ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useForm, FormProvider } from 'react-hook-form';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false
-    }
-  }
+      retry: false,
+    },
+  },
 });
 
 export const QueryClientWrapper: FC<{ children: ReactNode }> = ({
-  children
+  children,
 }: {
   children: ReactNode;
 }) => {
@@ -21,7 +21,7 @@ export const QueryClientWrapper: FC<{ children: ReactNode }> = ({
 };
 
 export const FormProviderWrapper: FC<{ children: ReactNode }> = ({
-  children
+  children,
 }: {
   children: ReactNode;
 }) => {
