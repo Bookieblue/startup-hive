@@ -24,8 +24,7 @@ const ConfirmOtpForm = () => {
     resolver: zodResolver(otpSchema),
   });
 
-  const { mutate: mutateEmailConfirmation } =
-    useMutateEmailConfirmation();
+  const { mutate: mutateEmailConfirmation } = useMutateEmailConfirmation();
 
   const onSubmit = (values: z.infer<typeof otpSchema>) => {
     setIsLoading(true);
