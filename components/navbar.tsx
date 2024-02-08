@@ -1,15 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
-import Button from "./ui/button"
+import Image from 'next/image';
+import Link from 'next/link';
+import Button from './ui/button';
 
 const Navbar = () => {
   return (
     <nav
       className="flexBetween max-container
-   padding-container w-full z-30 py-8 bg-cream-50 fixed"
+   padding-container w-full z-30 py-8 bg-cream-50 fixed 2xl:relative "
     >
       <Link href="/">
-        <Image src="/logo.svg" alt="logo" width={253} height={29} className="w-[80%] lg:full" />
+        <Image
+          src="/logo.svg"
+          alt="logo"
+          width={253}
+          height={29}
+          className="w-[80%] lg:full"
+        />
       </Link>
       <div className="flexEnd gap-5 lg:gap-10">
           <Image
