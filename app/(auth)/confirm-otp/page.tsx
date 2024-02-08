@@ -1,10 +1,58 @@
 'use client';
+import React from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Button from '@/components/ui/button';
 import ConfirmOtpForm from '@/components/forms/confirmOtp';
+import {
+  getLocalStorage,
+  removeLocalStorage,
+} from '@/lib/core/localStorageUtil';
+import { useMutateResendEmailConfirmationOTP } from '@/lib/models/auth/hooks';
+import { errorFormat } from '@/lib/utils';
+import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
+import { toast } from '@/components/ui/use-toast';
 
 const ConfirmOtp = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const email = getLocalStorage(HIVE_ACCOUNT_EMAIL);
+
+  const { mutate: mutateResendOTP } = useMutateResendEmailConfirmationOTP();
+
+  const onResendOTP = () => {
+    if (!email) return false;
+    setIsLoading(true);
+    mutateResendOTP(
+      { email },
+      {
+        onSuccess: () => {
+          setIsLoading(false);
+          toast({
+            description: 'OTP resent successfully',
+            title: 'Success',
+          });
+        },
+        onError: (error: any) => {
+          setIsLoading(false);
+          const message = errorFormat(error);
+          toast({
+            title: 'Error',
+            description: message,
+          });
+        },
+      },
+    );
+  };
+  const options = {
+    onClick: () => {
+      onResendOTP();
+    },
+  };
+  React.useEffect(() => {
+    return () => {
+      removeLocalStorage(HIVE_ACCOUNT_EMAIL);
+    };
+  }, []);
   return (
     <section className='max-container padding-container flex flex-col mt-20 bg-cream-50 gap-20 pt-5 lg:px-24 md:gap-28 lg:pt-10 xl:flex-row"'>
       <div className="relative">
@@ -19,12 +67,17 @@ const ConfirmOtp = () => {
             Error! Seems there is an error in the detail you submitted.
           </p>
           <ConfirmOtpForm />
-          <p className="medium-16 mt-10 mb-28 lg:mb-48">
-            Don’t get OTP?{' '}
-            <Link href="/" className="text-lightred-50">
-              Resend here
-            </Link>
-          </p>
+          <div className="flex gap-[30px] mt-9">
+            <p className=""> Don’t get OTP? </p>
+
+            <Button
+              type={'button'}
+              isLoading={isLoading}
+              variant="primary !border-none"
+              title="Resend here"
+              options={options}
+            />
+          </div>
         </div>
         <div className="hidden lg:flexEnd lg:block lg:w-1/2 border-2">
           <Image
