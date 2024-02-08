@@ -1,31 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form"
-// import Input from "@/components/ui/Button";
-import Button from "@/components/ui/button";
+import React from "react";
 import SetPasswordForm from "@/components/forms/setPassword";
 
 
 
 const SetPassword = () => {
-  const [password, setPassword] = useState("");
-  const [cpassword, setCpassword] = useState("");
-  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!password.trim()) {
-      setError(true);
-    }
-    if (!cpassword.trim()) {
-      setError(true);
-    }
-    else {
-      setError(false);
-    }
-  };
   return (
     <section className='max-container padding-container flex flex-col mt-20  bg-cream-50 gap-20 pt-5 lg:px-24 md:gap-28 lg:pt-10 xl:flex-row"'>
     <div className="relative">
@@ -40,7 +22,7 @@ const SetPassword = () => {
       </div>
       <div className="hidden lg:flexEnd lg:block lg:w-1/2 border-2">
           <Image
-            src="./africa-print.svg"
+            src="../../africa-print.svg"
             alt="print"
             width={392}
             height={2000}

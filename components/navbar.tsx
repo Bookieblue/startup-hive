@@ -13,7 +13,7 @@ const Navbar = () => {
       </Link>
       <div className="flexEnd gap-5 lg:gap-10">
           <Image
-            src="./search-icon.svg"
+            src="/search-icon.svg"
             alt="arrowdown"
             width={20}
             height={20}
@@ -22,14 +22,14 @@ const Navbar = () => {
           <ul className="hidden h-full gap-5 lg:flex">
           <div className="flex gap-1 cursor-pointer">
             <Image
-              src="./african-icon.svg"
+              src="/african-icon.svg"
               alt="arrowdown"
               width={20}
               height={20}
             />
             <p className="text-gray-30 regular-16">All African</p>
             <Image
-              src="./dropdown-menu.svg"
+              src="/dropdown-menu.svg"
               alt="arrowdown"
               width={20}
               height={20}
@@ -43,7 +43,7 @@ const Navbar = () => {
           <Button type="button" title="Submit Startup" variant="btn_black" />
         </div>
         <Image
-          src="hamburger.svg"
+          src="/hamburger.svg"
           alt="menu"
           width={32}
           height={32}

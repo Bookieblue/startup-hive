@@ -30,7 +30,7 @@ const ConfirmOtp = () => {
         </div>
         <div className="hidden lg:flexEnd lg:block lg:w-1/2 border-2">
           <Image
-            src="./africa-print.svg"
+            src="../../africa-print.svg"
             alt="print"
             width={392}
             height={2000}
