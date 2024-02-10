@@ -7,7 +7,9 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { useToast, toast } from '@/components/ui/use-toast';
+import * as _ from 'lodash';
+import { useRouter } from 'next/navigation';
+import { toast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -21,49 +23,53 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useMutateSignUp } from '@/lib/models/auth/hooks';
+import { signupFormSchema } from '@/lib/models/auth/schema';
 import { AFRICAN_COUNTRIES } from '@/app/constants';
-
-const FormSchema = z
-  .object({
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    email: z
-      .string()
-      .min(1, 'Email is required')
-      .email('Incorrect email address'),
-    password: z
-      .string()
-      .min(1, 'Password is required')
-      .min(8, 'Password must have 8 characters'),
-    confirmPassword: z
-      .string()
-      .min(1, 'Password confirmation is required')
-      .min(8, 'Password must have 8 characters'),
-    country: z.string().min(1, 'Please select a country to display'),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Password do not match',
-  });
+import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
+import { saveLocalStorage } from '@/lib/core/localStorageUtil';
+import { errorFormat } from '@/lib/utils';
 
 const SignUpForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof signupFormSchema>>({
+    resolver: zodResolver(signupFormSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      confirm_password: '',
       country: '',
     },
   });
+  const router = useRouter();
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    console.log(values);
-    toast({
-      title: 'Submitted succesfully',
-      description: 'Your details has been submitted.',
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const { mutate: onSignUp } = useMutateSignUp();
+
+  const onSubmit = (values: z.infer<typeof signupFormSchema>) => {
+    const payload = _.omit(values, ['confirm_password']);
+    setIsLoading(true);
+    onSignUp(payload, {
+      onSuccess: () => {
+        setIsLoading(false);
+        toast({
+          title: 'Submitted succesfully',
+          description: 'Account created successfully',
+        });
+        saveLocalStorage(HIVE_ACCOUNT_EMAIL, payload.email);
+        form.reset();
+        router.push('/confirm-otp');
+      },
+      onError: (error: any) => {
+        setIsLoading(false);
+        const message = errorFormat(error);
+        toast({
+          title: 'Error',
+          description: message,
+        });
+      },
     });
   };
 
@@ -73,10 +79,10 @@ const SignUpForm = () => {
         <div className="flex gap-5 flex-col lg:flex-row">
           <FormField
             control={form.control}
-            name="firstName"
+            name="first_name"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Your first name</FormLabel>
+                <FormLabel>First Name</FormLabel>
                 <FormControl>
                   <Input placeholder="eg. John" {...field} className="w-full" />
                 </FormControl>
@@ -86,10 +92,10 @@ const SignUpForm = () => {
           />
           <FormField
             control={form.control}
-            name="lastName"
+            name="last_name"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Your last name</FormLabel>
+                <FormLabel>Last Name</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="eg. Peterus"
@@ -108,7 +114,7 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Your Email</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="eg. yourname@gmail.com"
@@ -125,21 +131,22 @@ const SignUpForm = () => {
             name="country"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Your Country</FormLabel>
+                <FormLabel htmlFor={'country'}>Country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  value={field.value}
+                  {...field}
                 >
                   <FormControl>
-                    <SelectTrigger id="framework" className="w-full">
+                    <SelectTrigger id="country" className="w-full">
                       <SelectValue placeholder="Select your country" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent position="popper">
+                  <SelectContent position="popper" aria-labelledby="Country">
                     <ScrollArea className="w-full h-40 px-4">
                       {AFRICAN_COUNTRIES.map((country) => (
-                        <SelectItem key={country} value={country}>
-                          {country}
+                        <SelectItem key={country.code} value={country.code}>
+                          {country.name}
                         </SelectItem>
                       ))}
                     </ScrollArea>
@@ -156,7 +163,7 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Set password</FormLabel>
+                <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -171,13 +178,16 @@ const SignUpForm = () => {
           />
           <FormField
             control={form.control}
-            name="confirmPassword"
+            name="confirm_password"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Confirm password</FormLabel>
+                <FormLabel htmlFor={'confirm_password'}>
+                  Confirm Password
+                </FormLabel>
                 <FormControl>
                   <Input
                     type="password"
+                    id={'confirm_password'}
                     placeholder="Confirm password"
                     {...field}
                     className="w-full"
@@ -189,7 +199,12 @@ const SignUpForm = () => {
           />
         </div>
         <div className="mt-5">
-          <Button type="submit" title="Submit Now" variant="btn_lightred" />
+          <Button
+            type="submit"
+            title="Submit Now"
+            variant="btn_lightred"
+            isLoading={isLoading}
+          />
         </div>
       </form>
     </Form>
