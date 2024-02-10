@@ -72,7 +72,7 @@ const LoginForm = () => {
         />
         <p className="medium-16 mt-5 md:mt-5">
           Forgot password{' '}
-          <Link href="./reset-password" className="text-lightred-50">
+          <Link href="../password/forgot" className="text-lightred-50">
             Reset here
           </Link>
         </p>
