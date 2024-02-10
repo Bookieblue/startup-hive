@@ -46,7 +46,7 @@ const Navbar = () => {
           </Link>
         </ul>
         <div className="lg:flexCenter hidden">
-          <Button type="button" title="Submit Startup" variant="btn_black" />
+          <Button type="button" title="Submit Startup" variant="btn_black" isLoading/>
         </div>
         <Image
           src="/hamburger.svg"

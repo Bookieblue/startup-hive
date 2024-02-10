@@ -134,7 +134,7 @@ const SignUpForm = () => {
                 <FormLabel htmlFor={'country'}>Country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  value={field.value}
+                  // value={field.value}
                   {...field}
                 >
                   <FormControl>
