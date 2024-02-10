@@ -1,14 +1,16 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import LoginForm from '@/components/forms/login';
+import Logo from '@/components/ui/logo';
+import AfricanPrintImg from '@/components/ui/african-print-img';
 
 const Login = () => {
   return (
-    <section className='max-container padding-container flex flex-col bg-cream-50 gap-20 pt-24 lg:pt-28 lg:px-24 md:gap-28 2xl:pt-10 xl:flex-row"'>
-      <div className="relative">
+    <section className='max-container padding-container relative flex flex-col bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 xl:flex-row"'>
+       <Logo />
+      <div>
         <div className="md:w-[80%] lg:w-1/2">
           <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
             Login
@@ -30,15 +32,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        <div className="hidden lg:flexEnd lg:block lg:w-1/2">
-          <Image
-            src="./africa-print.svg"
-            alt="print"
-            width={392}
-            height={2000}
-            className="absolute right-0 top-5 mr-32px"
-          />
-        </div>
+        <AfricanPrintImg />
       </div>
     </section>
   );

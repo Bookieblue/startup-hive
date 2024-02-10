@@ -1,16 +1,18 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 import SetPasswordForm from "@/components/forms/setPassword";
+import Logo from "@/components/ui/logo";
+import AfricanPrintImg from "@/components/ui/african-print-img";
 
 
 
 const SetPassword = () => {
 
   return (
-    <section className='max-container padding-container flex flex-col mt-20  bg-cream-50 gap-20 pt-5 lg:px-24 md:gap-28 lg:pt-10 xl:flex-row"'>
-    <div className="relative">
+    <section className='max-container padding-container relative flex flex-col bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 xl:flex-row"'>
+    <Logo />
+    <div>
       <div className="md:w-[80%] lg:w-1/2">
         <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
          Set new password
@@ -20,15 +22,7 @@ const SetPassword = () => {
         </p>
         <SetPasswordForm />
       </div>
-      <div className="hidden lg:flexEnd lg:block lg:w-1/2 border-2">
-          <Image
-            src="../../africa-print.svg"
-            alt="print"
-            width={392}
-            height={2000}
-            className="absolute right-0 top-5 mr-32px"
-          />
-        </div>
+       <AfricanPrintImg />
       </div>
     </section>
   )
