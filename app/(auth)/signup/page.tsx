@@ -1,18 +1,18 @@
 'use client';
 
 import SignUpForm from '@/components/forms/signup';
-import AfricanPrintImg from '@/components/ui/african-print-img';
 import Logo from '@/components/ui/logo';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 const page = () => {
   return (
-    <section className='max-container padding-container relative flex flex-col bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 xl:flex-row"'>
+    <section className="max-container padding-container bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 ">
+      <div>
+      <div className="african-print" />
       <Logo />
-      <div className="flex">
-        <div className="md:w-[80%] lg:w-1/2">
+      <div className="lg:w-[60%]">
+        <div className="pt-10">
           <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
             Create account
           </h2>
@@ -33,7 +33,7 @@ const page = () => {
             </Link>
           </p>
         </div>
-        <AfricanPrintImg />
+      </div>
       </div>
     </section>
   );

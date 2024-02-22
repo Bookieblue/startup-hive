@@ -9,12 +9,12 @@ import Logo from '@/components/ui/logo';
 
 const Login = () => {
   return (
-    <section className="max-container padding-container pb-30 flex flex-col bg-cream-50 gap-10 pt-7 xl:flex-row lg:px-24 lg:gap-10 2xl:pt-10">
+    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10">
       <div>
       <div className="african-print" />
        <Logo />
-      <div className='flex'>
-        <div className="pt-10 gap-10">
+      <div className='lg:w-[50%]'>
+        <div className="pt-10">
           <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
             Login
           </h2>

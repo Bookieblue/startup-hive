@@ -35,12 +35,12 @@ const LoginForm = () => {
     },
   });
   const [isLoading, setIsLoading] = React.useState(false);
-  
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
     toast({
       title: 'Submitted succesfully',
-      description: 'Account created successfully',
+      description: 'User login successfully',
     });
   };
   return (

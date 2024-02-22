@@ -25,15 +25,12 @@ import {
 } from '@/components/ui/select';
 import { useMutateSignUp } from '@/lib/models/auth/hooks';
 import { signupFormSchema } from '@/lib/models/auth/schema';
-import { useMutateSignUp } from '@/lib/models/auth/hooks';
-import { signupFormSchema } from '@/lib/models/auth/schema';
 import { AFRICAN_COUNTRIES } from '@/app/constants';
-import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
 import { saveLocalStorage } from '@/lib/core/localStorageUtil';
 import { errorFormat } from '@/lib/utils';
 import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
-import { saveLocalStorage } from '@/lib/core/localStorageUtil';
-import { errorFormat } from '@/lib/utils';
+
+
 
 const SignUpForm = () => {
   const form = useForm<z.infer<typeof signupFormSchema>>({
@@ -139,7 +136,7 @@ const SignUpForm = () => {
                 <FormLabel htmlFor={'country'}>Country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  value={field.value}
+                  // value={field.value}
                   {...field}
                 >
                   <FormControl>

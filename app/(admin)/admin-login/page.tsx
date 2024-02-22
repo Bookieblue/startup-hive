@@ -1,17 +1,22 @@
+
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import LoginForm from '@/components/forms/login';
+import Logo from '@/components/ui/logo';
+
 
 const Login = () => {
   return (
-    <section className='max-container padding-container flex flex-col bg-cream-50 mt-20 gap-20 pt-5 lg:px-24 md:gap-28 lg:pt-10 xl:flex-row"'>
-      <div className="relative">
-        <div className="md:w-[80%] lg:w-1/2">
+    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10">
+      <div>
+      <div className="african-print" />
+       <Logo />
+      <div className='lg:w-[50%]'>
+        <div className="pt-10">
           <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
-            Admin Login
+           Admin Login
           </h2>
           <p className="regular-18 lg:regular-20 ">
             Note! If you own a Startup, publish it from{' '}
@@ -23,22 +28,14 @@ const Login = () => {
             Error! Seems there is an error in the detail you submitted.
           </p>
           <LoginForm />
-          <p className="medium-16 mt-10 mb-14">
+          <p className="medium-16 mt-10 lg:pb-32">
             Don’t have an account?{' '}
             <Link href="./signup" className="text-lightred-50">
               Create account here
             </Link>
           </p>
         </div>
-        <div className="hidden lg:flexEnd lg:block lg:w-1/2">
-          <Image
-            src="./africa-print.svg"
-            alt="print"
-            width={392}
-            height={2000}
-            className="absolute right-0 top-5 mr-32px"
-          />
-        </div>
+      </div>
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Input } from '../ui/input';
 import Button from '../ui/button';
+import { toast } from '@/components/ui/use-toast';
 
 const FormSchema = z
   .object({
@@ -38,8 +39,14 @@ const SetPasswordForm = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = React.useState(false);
+  
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    console.log('submitted successfully');
+    setIsLoading(true);
+    toast({
+      title: 'Submitted succesfully',
+      description: 'Password reset successfully',
+    });
   };
   return (
     <Form {...form}>
@@ -78,7 +85,7 @@ const SetPasswordForm = () => {
           )}
         />
         <div className="mt-3 md:mt-5 ">
-          <Button type="submit" title="Submit Now" variant="btn_lightred" />
+          <Button type="submit" title="Submit Now" variant="btn_lightred"  isLoading={isLoading} />
         </div>
       </form>
     </Form>
