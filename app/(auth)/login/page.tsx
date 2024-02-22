@@ -1,17 +1,20 @@
+
 'use client';
 
 import Link from 'next/link';
 import React from 'react';
 import LoginForm from '@/components/forms/login';
 import Logo from '@/components/ui/logo';
-import AfricanPrintImg from '@/components/ui/african-print-img';
+
 
 const Login = () => {
   return (
-    <section className='max-container padding-container relative flex flex-col bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 xl:flex-row"'>
-       <Logo />
+    <section className="max-container padding-container pb-30 flex flex-col bg-cream-50 gap-10 pt-7 xl:flex-row lg:px-24 lg:gap-10 2xl:pt-10">
       <div>
-        <div className="md:w-[80%] lg:w-1/2">
+      <div className="african-print" />
+       <Logo />
+      <div className='flex'>
+        <div className="pt-10 gap-10">
           <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
             Login
           </h2>
@@ -25,14 +28,14 @@ const Login = () => {
             Error! Seems there is an error in the detail you submitted.
           </p>
           <LoginForm />
-          <p className="medium-16 mt-10 mb-20">
+          <p className="medium-16 mt-10 lg:pb-32">
             Don’t have an account?{' '}
             <Link href="./signup" className="text-lightred-50">
               Create account here
             </Link>
           </p>
         </div>
-        <AfricanPrintImg />
+      </div>
       </div>
     </section>
   );

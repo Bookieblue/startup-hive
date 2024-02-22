@@ -20,8 +20,7 @@ export default function RootLayout({
       <body>
         <TansStackProvider>
           <main
-            className="relative
-        overflow-hidden"
+            className="overflow-hidden"
           >
             {children}
           </main>
