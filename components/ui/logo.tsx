@@ -5,12 +5,12 @@ import Link from 'next/link';
 const Logo = () => {
   return (
     <div>
-     <Link href="/">
+      <Link href="/">
         <Image
           src="/logo.svg"
           alt="logo"
-          width={190}
-          height={20}
+          width={253}
+          height={29}
         />
       </Link>
     </div>

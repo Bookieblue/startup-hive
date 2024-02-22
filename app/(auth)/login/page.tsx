@@ -28,7 +28,7 @@ const Login = () => {
             Error! Seems there is an error in the detail you submitted.
           </p>
           <LoginForm />
-          <p className="medium-16 mt-10 lg:pb-32">
+          <p className="medium-16 mt-10 mb-14 lg:pb-32">
             Don’t have an account?{' '}
             <Link href="./signup" className="text-lightred-50">
               Create account here
