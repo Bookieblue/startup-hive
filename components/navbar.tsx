@@ -1,8 +1,12 @@
+"use client"
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from './ui/button';
 
 const Navbar = () => {
+
+  const [isLoading, setIsLoading] = React.useState(false);
   return (
     <nav
       className="flexBetween max-container
@@ -46,7 +50,7 @@ const Navbar = () => {
           </Link>
         </ul>
         <div className="lg:flexCenter hidden">
-          <Button type="button" title="Submit Startup" variant="btn_black" isLoading/>
+          <Button type="button" title="Submit Startup" variant="btn_black" isLoading={isLoading}/>
         </div>
         <Image
           src="/hamburger.svg"
