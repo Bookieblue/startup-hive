@@ -9,7 +9,6 @@ export const useMutateSignUp = (options?: object) => {
       method: 'POST',
       body: data,
     });
-
   return useMutation({
     mutationFn: signUp,
     ...options,
