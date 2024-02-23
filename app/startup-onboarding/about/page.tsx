@@ -1,6 +1,8 @@
 "use client"
-import OnboardingForm from '@/components/forms/startupOnboarding'
+import AboutStartUpForm from '@/components/forms/aboutStartup';
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 
 const page = () => {
@@ -10,16 +12,24 @@ const page = () => {
     <div className="african-print mr-28 mt-32" />
     <div className="lg:w-[55%]">
       <div className="pt-14">
+        <div className='flex gap-5'>
+        <Link href="./screen-1" className="text-lightred-50">
+        <Image
+          src="/arrow.svg"
+          alt="logo"
+          width={25}
+          height={25}
+          className='mt-14'
+        />
+        </Link>
         <h2 className="text-gray-20 regular-24 mt-10 lg:regular-34 pb-3 md:pb-5">
-        Welcome onboard Paystack
+        Tell us about your startup
         </h2>
-        <p className="regular-18 lg:regular-20 mb-8 ">
-        You’re one of our early adapter. It’s time to complete your profile.{' '}
-        </p>
+        </div>
         <p className="text-red-400 bg-yellow-50 w-full py-3 pl-5 rounded-md mt-5 hidden">
           Error! Seems there is an error in the detail you submitted.
         </p>
-        <OnboardingForm />
+        <AboutStartUpForm />
       </div>
     </div>
     </div>
@@ -27,4 +37,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;

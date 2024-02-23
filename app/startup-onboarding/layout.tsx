@@ -6,7 +6,7 @@ interface FormLayoutProps {
 const Formlayout: FC<FormLayoutProps> = ({ children }) => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <main>{children}</main>
     </div>
   );
