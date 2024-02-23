@@ -218,6 +218,11 @@ h6 {
   }
 }
 
+/* afr1can print background image */
+.african-print {
+  @apply absolute right-0 top-0 h-[130vh] w-screen bg-bg-img bg-cover hidden lg:flexEnd lg:block lg:w-[34%] z-10;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

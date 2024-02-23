@@ -13,6 +13,7 @@ import * as z from 'zod';
 import { Input } from '../ui/input';
 import Button from '../ui/button';
 import Link from 'next/link';
+import { toast } from '@/components/ui/use-toast';
 
 const FormSchema = z.object({
   email: z
@@ -33,9 +34,14 @@ const LoginForm = () => {
       password: '',
     },
   });
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    console.log('submitted successfully');
+    setIsLoading(true);
+    toast({
+      title: 'Submitted succesfully',
+      description: 'User login successfully',
+    });
   };
   return (
     <Form {...form}>
@@ -72,11 +78,16 @@ const LoginForm = () => {
         />
         <p className="medium-16 mt-5 md:mt-5">
           Forgot password{' '}
-          <Link href="./reset-password" className="text-lightred-50">
+          <Link href="../password/forgot" className="text-lightred-50">
             Reset here
           </Link>
         </p>
-        <Button type="submit" title="Submit Now" variant="btn_lightred" />
+        <Button
+          type="submit"
+          title="Submit Now"
+          variant="btn_lightred"
+          isLoading={isLoading}
+        />
       </form>
     </Form>
   );

@@ -19,13 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <TansStackProvider>
-          <Navbar />
-          <main
-            className="relative
-        overflow-hidden"
-          >
-            {children}
-          </main>
+          <main className="overflow-hidden">{children}</main>
           <Toaster />
         </TansStackProvider>
       </body>

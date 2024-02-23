@@ -26,9 +26,9 @@ import {
 import { useMutateSignUp } from '@/lib/models/auth/hooks';
 import { signupFormSchema } from '@/lib/models/auth/schema';
 import { AFRICAN_COUNTRIES } from '@/app/constants';
-import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
 import { saveLocalStorage } from '@/lib/core/localStorageUtil';
 import { errorFormat } from '@/lib/utils';
+import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
 
 const SignUpForm = () => {
   const form = useForm<z.infer<typeof signupFormSchema>>({
@@ -132,7 +132,6 @@ const SignUpForm = () => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel htmlFor={'country'}>Country</FormLabel>
-                <Select onValueChange={field.onChange} {...field}>
                   <FormControl>
                     <SelectTrigger id="country" className="w-full">
                       <SelectValue placeholder="Select your country" />

@@ -83,6 +83,9 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backgroundImage: {
+        'bg-img': "url('/africa-print.svg')",
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
