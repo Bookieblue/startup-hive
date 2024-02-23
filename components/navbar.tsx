@@ -1,11 +1,10 @@
-"use client"
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from './ui/button';
 
 const Navbar = () => {
-
   const [isLoading, setIsLoading] = React.useState(false);
   return (
     <nav
@@ -22,14 +21,14 @@ const Navbar = () => {
         />
       </Link>
       <div className="flexEnd gap-5 lg:gap-10">
-          <Image
-            src="/search-icon.svg"
-            alt="arrowdown"
-            width={20}
-            height={20}
-            className="cursor-pointer"
-          />
-          <ul className="hidden h-full gap-5 lg:flex">
+        <Image
+          src="/search-icon.svg"
+          alt="arrowdown"
+          width={20}
+          height={20}
+          className="cursor-pointer"
+        />
+        <ul className="hidden h-full gap-5 lg:flex">
           <div className="flex gap-1 cursor-pointer">
             <Image
               src="/african-icon.svg"
@@ -50,7 +49,12 @@ const Navbar = () => {
           </Link>
         </ul>
         <div className="lg:flexCenter hidden">
-          <Button type="button" title="Submit Startup" variant="btn_black" isLoading={isLoading}/>
+          <Button
+            type="button"
+            title="Submit Startup"
+            variant="btn_black"
+            isLoading={isLoading}
+          />
         </div>
         <Image
           src="/hamburger.svg"

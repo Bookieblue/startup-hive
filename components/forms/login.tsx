@@ -82,7 +82,12 @@ const LoginForm = () => {
             Reset here
           </Link>
         </p>
-        <Button type="submit" title="Submit Now" variant="btn_lightred" isLoading={isLoading} />
+        <Button
+          type="submit"
+          title="Submit Now"
+          variant="btn_lightred"
+          isLoading={isLoading}
+        />
       </form>
     </Form>
   );

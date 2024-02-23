@@ -84,7 +84,7 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       backgroundImage: {
-        'bg-img': "url('/africa-print.svg')"
+        'bg-img': "url('/africa-print.svg')",
       },
       keyframes: {
         'accordion-down': {

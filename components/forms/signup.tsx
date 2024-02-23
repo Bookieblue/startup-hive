@@ -30,8 +30,6 @@ import { saveLocalStorage } from '@/lib/core/localStorageUtil';
 import { errorFormat } from '@/lib/utils';
 import { HIVE_ACCOUNT_EMAIL } from '@/lib/core/constant';
 
-
-
 const SignUpForm = () => {
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
