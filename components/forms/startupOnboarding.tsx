@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { useRouter } from 'next/navigation';
 import { useToast, toast } from "@/components/ui/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -50,12 +51,16 @@ const OnboardingForm = () => {
     },
   });
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const router = useRouter();
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
     toast({
       title: "Submitted succesfully",
       description: "Your details has been submitted.",
     })
+    router.push('/startup-onboarding/about');
   };
 
   const [tags, setTags] = useState(["Nigeria"]); 

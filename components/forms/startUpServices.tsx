@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -33,12 +34,15 @@ const StartUpServicesForm = () => {
   const [tags, setTags] = useState(["Virtual card"]); 
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const router = useRouter();
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
     toast({
       title: 'Submitted succesfully',
       description: '',
     });
+    router.push('/startup-onboarding/social-links');
   };
   return (
     <Form {...form}>

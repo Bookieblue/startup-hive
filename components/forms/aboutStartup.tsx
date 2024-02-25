@@ -7,6 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -29,6 +30,7 @@ const AboutStartUpForm = () => {
     },
   });
   const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
@@ -36,6 +38,7 @@ const AboutStartUpForm = () => {
       title: 'Submitted succesfully',
       description: '',
     });
+    router.push('/startup-onboarding/services');
   };
   return (
     <Form {...form}>
