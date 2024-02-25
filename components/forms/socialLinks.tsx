@@ -162,7 +162,7 @@ const SocialLinksForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    type="password"
+                    type="text"
                     placeholder=""
                     {...field}
                     className="w-full"
