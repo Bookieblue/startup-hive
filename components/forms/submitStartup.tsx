@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { AFRICAN_COUNTRIES } from '@/app/constants';
 
 
 
@@ -66,7 +67,7 @@ const SubmitStartupForm = () => {
     setIsLoading(true);
         toast({
           title: 'Submitted succesfully',
-          description: 'Account created successfully',
+          description: 'Startup details submitted successfully',
         });
   };
 
@@ -141,11 +142,11 @@ const SubmitStartupForm = () => {
                   </FormControl>
                   <SelectContent position="popper" aria-labelledby="Country">
                     <ScrollArea className="w-full h-40 px-4">
-                      {/* {AFRICAN_COUNTRIES.map((country) => (
+                      {AFRICAN_COUNTRIES.map((country) => (
                         <SelectItem key={country.code} value={country.code}>
                           {country.name}
                         </SelectItem>
-                      ))} */}
+                      ))}
                     </ScrollArea>
                   </SelectContent>
                 </Select>

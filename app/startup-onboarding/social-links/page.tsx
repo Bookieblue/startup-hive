@@ -13,7 +13,7 @@ const page = () => {
     <div className="lg:w-[55%]">
       <div className="pt-14">
         <div className='flex gap-5'>
-        <Link href="./screen-2" className="text-lightred-50">
+        <Link href="./services" className="text-lightred-50">
         <Image
           src="/arrow.svg"
           alt="logo"

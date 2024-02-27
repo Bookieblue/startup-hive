@@ -50,6 +50,7 @@ const SocialLinksForm = () => {
 
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const router = useRouter();
 
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
@@ -57,8 +58,9 @@ const SocialLinksForm = () => {
     setIsLoading(true);
         toast({
           title: 'Submitted succesfully',
-          description: 'Account created successfully',
+          description: 'Company Onboarded successfully',
         });
+      router.push('');
   };
 
   return (

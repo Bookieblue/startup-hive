@@ -38,12 +38,9 @@ const StartUpServicesForm = () => {
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
-    toast({
-      title: 'Submitted succesfully',
-      description: '',
-    });
     router.push('/startup-onboarding/social-links');
   };
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">

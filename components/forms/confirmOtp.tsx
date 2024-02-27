@@ -17,6 +17,7 @@ import Button from '../ui/button';
 import { otpSchema } from '@/lib/models/auth/schema';
 import { useMutateEmailConfirmation } from '@/lib/models/auth/hooks';
 import { errorFormat } from '@/lib/utils';
+
 const ConfirmOtpForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);

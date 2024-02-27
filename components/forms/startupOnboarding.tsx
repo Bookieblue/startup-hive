@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { useRouter } from 'next/navigation';
-import { useToast, toast } from "@/components/ui/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -23,20 +22,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { AFRICAN_COUNTRIES } from "@/app/constants";
+import { AFRICAN_COUNTRIES, COMPANY_FIELD } from "@/app/constants";
 import TagsInput from 'react-tagsinput';
 
 
 const FormSchema = z
   .object({
-    firstName: z.string().min(1, "First name is required"),
-    lastName: z.string().min(1, "Last name is required"),
+    StartupName: z.string().min(1, "Startup name is required"),
+    domain: z.string().min(1, "Domain is required"),
     email: z
       .string()
       .min(1, "Email is required")
       .email("Incorrect email address"),
     country: z
-    .string().min(1, "Please select a country to display")
+    .string().min(1, "Please select a country to display"),
+    describeStartup: z
+    .string().min(10, "Please describe your startup")
+    .max(65, "your startup is more than 65 characters"),
+    companyField: z
+    .string().min(1, "Please select a field to display"),
+    year: z
+    .string().min(4, "Valid Year is required")
+    .max(4, "Invaild year"),
   })
 
 
@@ -44,10 +51,13 @@ const OnboardingForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      StartupName: "",
+      domain: "",
       email: "",
       country:"",
+      companyField:"",
+      describeStartup: "",
+      year: "",
     },
   });
   const [isLoading, setIsLoading] = React.useState(false);
@@ -56,10 +66,6 @@ const OnboardingForm = () => {
 
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
-    toast({
-      title: "Submitted succesfully",
-      description: "Your details has been submitted.",
-    })
     router.push('/startup-onboarding/about');
   };
 
@@ -71,7 +77,7 @@ const OnboardingForm = () => {
         <div className="flex gap-5 flex-col lg:flex-row">
           <FormField
             control={form.control}
-            name="firstName"
+            name="StartupName"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Your startup name</FormLabel>
@@ -84,7 +90,7 @@ const OnboardingForm = () => {
           />
           <FormField
             control={form.control}
-            name="lastName"
+            name="domain"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Website url (domain)</FormLabel>
@@ -118,26 +124,29 @@ const OnboardingForm = () => {
               </FormItem>
             )}
           />
-          <FormField
+         <FormField
             control={form.control}
             name="country"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Country</FormLabel>
+                <FormLabel htmlFor={'country'}>Country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  // value={field.value}
+                  {...field}
                 >
                   <FormControl>
-                    <SelectTrigger id="framework" className="w-full">
+                    <SelectTrigger id="country" className="w-full">
                       <SelectValue placeholder="Select your country" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent position="popper">
+                  <SelectContent position="popper" aria-labelledby="Country">
                     <ScrollArea className="w-full h-40 px-4">
-                    {/* {AFRICAN_COUNTRIES.map((country) =>(
-                    //   <SelectItem value={country}>{country}</SelectItem>
-                    ) )} */}
+                      {AFRICAN_COUNTRIES.map((country) => (
+                        <SelectItem key={country.code} value={country.code}>
+                          {country.name}
+                        </SelectItem>
+                      ))}
                     </ScrollArea>
                   </SelectContent>
                 </Select>
@@ -149,7 +158,7 @@ const OnboardingForm = () => {
         <div className="mt-5">
         <FormField
             control={form.control}
-            name="firstName"
+            name="describeStartup"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Describe your startup in 65 characters</FormLabel>
@@ -164,7 +173,7 @@ const OnboardingForm = () => {
         <div className="flex gap-5 flex-col lg:flex-row mt-5 ">
         <FormField
             control={form.control}
-            name="country"
+            name="companyField"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Company field</FormLabel>
@@ -179,9 +188,11 @@ const OnboardingForm = () => {
                   </FormControl>
                   <SelectContent position="popper">
                     <ScrollArea className="w-full h-40 px-4">
-                    {/* {AFRICAN_COUNTRIES.map((country) =>(
-                    //   <SelectItem value={country}>{country}</SelectItem>
-                    ) )} */}
+                    {COMPANY_FIELD.map((companyField) => (
+                        <SelectItem key={companyField.name} value={companyField.name}>
+                          {companyField.name}
+                        </SelectItem>
+                      ))}
                     </ScrollArea>
                   </SelectContent>
                 </Select>
@@ -191,7 +202,7 @@ const OnboardingForm = () => {
           />
           <FormField
             control={form.control}
-            name="lastName"
+            name="year"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Founded year</FormLabel>
