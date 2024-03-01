@@ -1,5 +1,5 @@
-"use client"
-import React,{useState} from "react";
+'use client';
+import React, { useState } from 'react';
 import {
   Form,
   FormControl,
@@ -7,69 +7,58 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
+} from '../ui/form';
 import { useRouter } from 'next/navigation';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Input } from "../ui/input";
-import Button from "../ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Input } from '../ui/input';
+import Button from '../ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { AFRICAN_COUNTRIES, COMPANY_FIELD } from "@/app/constants";
+} from '@/components/ui/select';
+import { AFRICAN_COUNTRIES, COMPANY_FIELD } from '@/app/constants';
 import TagsInput from 'react-tagsinput';
+import { UploadButton } from '@/lib/utils/uploadthing';
+import Image from 'next/image';
+import { toast } from '@/components/ui/use-toast';
+import { onboardSchema } from '@/lib/models/auth/schema';
 
-
-const FormSchema = z
-  .object({
-    StartupName: z.string().min(1, "Startup name is required"),
-    domain: z.string().min(1, "Domain is required"),
-    email: z
-      .string()
-      .min(1, "Email is required")
-      .email("Incorrect email address"),
-    country: z
-    .string().min(1, "Please select a country to display"),
-    describeStartup: z
-    .string().min(10, "Please describe your startup")
-    .max(65, "your startup is more than 65 characters"),
-    companyField: z
-    .string().min(1, "Please select a field to display"),
-    year: z
-    .string().min(4, "Valid Year is required")
-    .max(4, "Invaild year"),
-  })
 
 
 const OnboardingForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof onboardSchema>>({
+    resolver: zodResolver(onboardSchema),
     defaultValues: {
-      StartupName: "",
-      domain: "",
-      email: "",
-      country:"",
-      companyField:"",
-      describeStartup: "",
-      year: "",
+      StartupName: '',
+      domain: '',
+      email: '',
+      country: '',
+      companyField: '',
+      describeStartup: '',
+      year: '',
+      tags: '',
+      image: '',
     },
   });
+
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const [imageUrl, setImageUrl] = useState<string>('/default-upload.svg');
+
+  const [tags, setTags] = useState(['Nigeria']);
 
   const router = useRouter();
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = (values: z.infer<typeof onboardSchema>) => {
     setIsLoading(true);
     router.push('/startup-onboarding/about');
   };
-
-  const [tags, setTags] = useState(["Nigeria"]); 
 
   return (
     <Form {...form}>
@@ -124,7 +113,7 @@ const OnboardingForm = () => {
               </FormItem>
             )}
           />
-         <FormField
+          <FormField
             control={form.control}
             name="country"
             render={({ field }) => (
@@ -156,7 +145,7 @@ const OnboardingForm = () => {
           />
         </div>
         <div className="mt-5">
-        <FormField
+          <FormField
             control={form.control}
             name="describeStartup"
             render={({ field }) => (
@@ -171,7 +160,7 @@ const OnboardingForm = () => {
           />
         </div>
         <div className="flex gap-5 flex-col lg:flex-row mt-5 ">
-        <FormField
+          <FormField
             control={form.control}
             name="companyField"
             render={({ field }) => (
@@ -188,8 +177,11 @@ const OnboardingForm = () => {
                   </FormControl>
                   <SelectContent position="popper">
                     <ScrollArea className="w-full h-40 px-4">
-                    {COMPANY_FIELD.map((companyField) => (
-                        <SelectItem key={companyField.name} value={companyField.name}>
+                      {COMPANY_FIELD.map((companyField) => (
+                        <SelectItem
+                          key={companyField.name}
+                          value={companyField.name}
+                        >
                           {companyField.name}
                         </SelectItem>
                       ))}
@@ -207,10 +199,26 @@ const OnboardingForm = () => {
               <FormItem className="w-full">
                 <FormLabel>Founded year</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder=""
-                    {...field}
-                    className="w-full"
+                  <Input placeholder="" {...field} className="w-full" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="mt-5">
+          <FormField
+            control={form.control}
+            name="tags"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Tag countries that can use your startups</FormLabel>
+                <FormControl>
+                  <TagsInput
+                    value={tags}
+                    onChange={setTags}
+                    tagProps={{ className: 'react-tagsinput-tag info' }}
+                    inputProps={{ placeholder: 'Add a tag' }}
                   />
                 </FormControl>
                 <FormMessage />
@@ -219,19 +227,56 @@ const OnboardingForm = () => {
           />
         </div>
         <div className="mt-5">
-                  <FormLabel>Tag countries that can use your startups</FormLabel>
-                    <TagsInput 
-                        value={tags} 
-                        onChange={setTags} 
-                        tagProps={{ className: "react-tagsinput-tag info" }}
-                        inputProps={{placeholder: 'Add a tag'}}
-                    /> 
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Upload logo</FormLabel>
+                <FormControl>
+                  <div className="flex gap-3">
+                    {imageUrl.length ? (
+                      <div>
+                        <Image
+                          src={imageUrl}
+                          alt="logo pic"
+                          width={90}
+                          height={100}
+                        />
+                      </div>
+                    ) : null}
+                    <UploadButton
+                      className="upload-btn"
+                      endpoint="imageUploader"
+                      onClientUploadComplete={(res) => {
+                        console.log('Files: ', res);
+                        setImageUrl(res[0].url);
+                        toast({
+                          title: 'Uploded succesfully',
+                          description: 'Logo uploaded successfully',
+                        });
+                      }}
+                      onUploadError={(error: Error) => {
+                        toast({
+                          title: 'Error',
+                          description: (`ERROR! ${error.message}`),
+                        });
+                      }}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
         <div className="mt-5">
-        <FormLabel>Upload logo</FormLabel>
-        </div>
-        <div className="mt-5">
-          <Button type="submit" title="Save & proceed" variant="btn_lightred" isLoading={isLoading}/>
+          <Button
+            type="submit"
+            title="Save & proceed"
+            variant="btn_lightred"
+            isLoading={isLoading}
+          />
         </div>
       </form>
     </Form>

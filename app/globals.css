@@ -89,56 +89,7 @@ h6 {
   font-family: Candal;
 }
 
-.react-tagsinput {
-  background-color:transparent;
-  border: 1px solid #D4CFCF;
-  overflow: hidden;
-  padding-left: 5px;
-  padding-top: 10px;
-  padding-bottom:5px;
-  border-radius:5px;
-}
 
-.react-tagsinput--focused {
-  border-color: #D4CFCF;
-}
-
-.react-tagsinput-tag {
-  background-color:  #333333;  
-  border-radius:10px;
-  border: 1px solid #333333;
-  color:#FDF8E6;
-  display: inline-block;
-  font-family: sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  padding: 5px 10px;
-}
-
-.react-tagsinput-remove {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.react-tagsinput-tag a::before {
-  content: " ×";
-}
-
-.react-tagsinput-input {
-  background: transparent;
-  border: 0;
-  color: #777;
-  font-family: sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  margin-bottom: 6px;
-  margin-top: 1px;
-  outline: none;
-  padding: 5px;
-  width: 80px;
-}
 
 @layer utilities {
   .btn_black {
@@ -271,8 +222,44 @@ h6 {
 
  /* afr1can print background image */
  .african-print {
-  @apply absolute right-0 top-0 h-[129vh] w-screen bg-bg-img bg-cover hidden lg:flexEnd lg:block lg:w-[34%] z-10 ;
+  @apply absolute right-0 top-0 h-[150vh] w-screen bg-bg-img bg-cover hidden lg:flexEnd lg:block lg:w-[34%] z-10 ;
 }
+
+/* styles for upload button */
+.upload-btn{
+  @apply ut-button:bg-transparent ut-button:text-lightred-50  underline decoration-lightred-50
+  ut-button:ut-readying:bg-transparent ut-allowed-content:hidden ut-button:ut-ready:border-none
+  ut-button:ut-readying:border-0 ut-button:ut-ready:bg-transparent ut-button:ut-uploading:bg-transparent
+  ut-button:ut-uploading:text-lightred-50 ut-button:ut-ready:focus-within:ring-lightred-50 ut-button:ut-ready:focus-within:ring-1
+  ut-button:ut-uploading:after:bg-red-200 ut-button:ut-uploading:focus-within:ring-lightred-50 border-none
+}
+
+/* styles for input tags */
+.react-tagsinput {
+  @apply bg-transparent border border-[#D4CFCF] overflow-hidden pl-[5px] pt-[10px] pb-[5px] rounded-sm
+}
+
+.react-tagsinput--focused {
+  @apply border-[#D4CFCF]
+}
+
+.react-tagsinput-tag {
+  @apply bg-[#333333] rounded-lg border border-[#33333] text-[#FDF8E6] 
+  inline-block font-normal text-sm mb-[5px] ml-[5px] px-[10px] py-[5px]
+}
+
+.react-tagsinput-remove {
+  @apply cursor-pointer font-bold
+}
+
+.react-tagsinput-tag a::before {
+  content: " ×";
+}
+
+.react-tagsinput-input {
+  @apply bg-transparent border-0 text-[#777] text-sm font-normal mb-2 mt-[1px] p-[5px] w-[80px] outline-none
+}
+
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {
