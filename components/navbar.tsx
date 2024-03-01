@@ -44,7 +44,7 @@ const Navbar = () => {
               height={20}
             />
           </div>
-          <Link href="./login">
+          <Link href="/login">
             <p className="text-gray-30 regular-16">Login</p>
           </Link>
         </ul>
