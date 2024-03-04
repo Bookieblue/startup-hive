@@ -1,42 +1,18 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import * as _ from 'lodash';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
-
-
-const FormSchema = z.object({
-    facebook: z
-    .string(),
-    tiktok: z
-    .string(),
-    youtube: z
-    .string(),
-    whatsapp: z
-    .string(),
-    discord: z
-    .string(),
-    twitter: z
-    .string()
-  });
-
-
+import { TextInput } from '@/components/ui/FormFields';
+import { SocialLinksSchema } from '@/lib/models/auth/schema';
 
 const SocialLinksForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof SocialLinksSchema>>({
+    resolver: zodResolver(SocialLinksSchema),
     defaultValues: {
       facebook: '',
       tiktok: '',
@@ -47,132 +23,62 @@ const SocialLinksForm = () => {
     },
   });
 
-
   const [isLoading, setIsLoading] = React.useState(false);
 
   const router = useRouter();
 
-
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    
+  const onSubmit = (values: z.infer<typeof SocialLinksSchema>) => {
     setIsLoading(true);
-        toast({
-          title: 'Submitted succesfully',
-          description: 'Company Onboarded successfully',
-        });
-      router.push('');
+    toast({
+      title: 'Submitted succesfully',
+      description: 'Company Onboarded successfully',
+    });
+    router.push('');
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="my-5 ">
         <div className="flex gap-5 flex-col lg:flex-row">
-          <FormField
+          <TextInput
             control={form.control}
             name="facebook"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Facebook</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} className="w-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Facebook"
           />
-          <FormField
+          <TextInput
             control={form.control}
             name="youtube"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Youtube</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder=""
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Youtube"
           />
         </div>
         <div className="flex gap-5 flex-col lg:flex-row mt-5">
-          <FormField
+          <TextInput
             control={form.control}
             name="twitter"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Twitter(x)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder=""
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Twitter(x)"
           />
-            <FormField
+          <TextInput
             control={form.control}
             name="tiktok"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Tiktok</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder=""
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Tiktok"
           />
         </div>
         <div className="flex gap-5 flex-col lg:flex-row mt-5 ">
-          <FormField
+          <TextInput
             control={form.control}
             name="whatsapp"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Whatsapp</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder=""
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Whatsapp"
           />
-          <FormField
+          <TextInput
             control={form.control}
             name="discord"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>
-                  Discord
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder=""
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=" "
+            label="Discord"
           />
         </div>
         <div className="mt-5">

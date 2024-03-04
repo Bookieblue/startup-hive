@@ -1,38 +1,24 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
-
-
-const FormSchema = z.object({
-  about: z
-    .string()
-    .min(1, 'About your startup is required')
-    .max(365, "Your writeup is above 365 characters")
-});
+import TextInput from '../ui/FormFields/TextInput';
+import { AboutSchema } from '@/lib/models/auth/schema';
 
 const AboutStartUpForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof AboutSchema>>({
+    resolver: zodResolver(AboutSchema),
     defaultValues: {
-      about: ''
+      about: '',
     },
   });
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = (values: z.infer<typeof AboutSchema>) => {
     setIsLoading(true);
     router.push('/startup-onboarding/services');
   };
@@ -40,21 +26,21 @@ const AboutStartUpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
-        <FormField
+        <TextInput
           control={form.control}
           name="about"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>What do you want the world to know about your startup?</FormLabel>
-              <FormControl>
-                <Input placeholder="Give overview of  your startup in 395 characters" {...field} className='h-40 px-5 pb-28 mb-5' />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          placeholder="Give overview of  your startup in 395 characters"
+          label="What do you want the world to know about your startup?"
+          className="h-40 px-5 pb-28 mb-5"
         />
-        
-        <Button type="submit" title="Save & Proceed" variant="btn_lightred" isLoading={isLoading} />
+        <div className='pb-10'>
+        <Button
+          type="submit"
+          title="Save & Proceed"
+          variant="btn_lightred"
+          isLoading={isLoading}
+        />
+        </div>
       </form>
     </Form>
   );

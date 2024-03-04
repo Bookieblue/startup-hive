@@ -32,6 +32,7 @@ const SignUpForm = () => {
     label: country.name,
     value: country.code,
   }));
+
   const [isLoading, setIsLoading] = React.useState(false);
 
   const { mutate: onSignUp } = useMutateSignUp();

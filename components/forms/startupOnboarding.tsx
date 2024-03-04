@@ -1,61 +1,49 @@
 'use client';
 import React, { useState } from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { AFRICAN_COUNTRIES, COMPANY_FIELD } from '@/app/constants';
-import TagsInput from 'react-tagsinput';
-import { UploadButton } from '@/lib/utils/uploadthing';
-import Image from 'next/image';
-import { toast } from '@/components/ui/use-toast';
-import { onboardSchema } from '@/lib/models/auth/schema';
-
-
+import { OnboardSchema } from '@/lib/models/auth/schema';
+import { TextInput, SelectInput, TagInput } from '@/components/ui/FormFields';
+import ImageInput from '../ui/FormFields/ImageInput';
 
 const OnboardingForm = () => {
-  const form = useForm<z.infer<typeof onboardSchema>>({
-    resolver: zodResolver(onboardSchema),
+  const defaultImageUrl = '/default-upload.svg';
+
+  const form = useForm<z.infer<typeof OnboardSchema>>({
+    resolver: zodResolver(OnboardSchema),
     defaultValues: {
-      StartupName: '',
+      startup_name: '',
       domain: '',
       email: '',
       country: '',
-      companyField: '',
-      describeStartup: '',
+      company_field: '',
+      describe_startup: '',
       year: '',
       tags: '',
-      image: '',
+      image: defaultImageUrl,
     },
   });
 
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [imageUrl, setImageUrl] = useState<string>('/default-upload.svg');
+  const countries = AFRICAN_COUNTRIES.map((country) => ({
+    label: country.name,
+    value: country.code,
+  }));
 
-  const [tags, setTags] = useState(['Nigeria']);
+  const field = COMPANY_FIELD.map((company_field) => ({
+    label: company_field.name,
+    value: company_field.name,
+  }));
 
   const router = useRouter();
 
-  const onSubmit = (values: z.infer<typeof onboardSchema>) => {
+  const onSubmit = (values: z.infer<typeof OnboardSchema>) => {
     setIsLoading(true);
     router.push('/startup-onboarding/about');
   };
@@ -64,211 +52,66 @@ const OnboardingForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="my-5 ">
         <div className="flex gap-5 flex-col lg:flex-row">
-          <FormField
+          <TextInput
             control={form.control}
-            name="StartupName"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Your startup name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Paystack" {...field} className="w-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            name="startup_name"
+            placeholder="Paystack"
+            label="Your startup name"
           />
-          <FormField
+          <TextInput
             control={form.control}
             name="domain"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Website url (domain)</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="paystack.com"
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder="paystack.com"
+            label="Website url (domain)"
           />
         </div>
         <div className="flex gap-5 flex-col lg:flex-row mt-5">
-          <FormField
+          <TextInput
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Corporate email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="eg. yourname@gmail.com"
-                    {...field}
-                    className="w-full"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder="support@paystack.com"
+            label="Corporate email"
           />
-          <FormField
+          <SelectInput
             control={form.control}
             name="country"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel htmlFor={'country'}>Country</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  // value={field.value}
-                  {...field}
-                >
-                  <FormControl>
-                    <SelectTrigger id="country" className="w-full">
-                      <SelectValue placeholder="Select your country" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent position="popper" aria-labelledby="Country">
-                    <ScrollArea className="w-full h-40 px-4">
-                      {AFRICAN_COUNTRIES.map((country) => (
-                        <SelectItem key={country.code} value={country.code}>
-                          {country.name}
-                        </SelectItem>
-                      ))}
-                    </ScrollArea>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Country"
+            options={countries}
+            placeholder="Select your country"
           />
         </div>
         <div className="mt-5">
-          <FormField
+          <TextInput
             control={form.control}
-            name="describeStartup"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Describe your startup in 65 characters</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} className="w-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            name="describe_startup"
+            placeholder=" "
+            label="Describe your startup in 65 characters"
           />
         </div>
         <div className="flex gap-5 flex-col lg:flex-row mt-5 ">
-          <FormField
+          <SelectInput
             control={form.control}
-            name="companyField"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Company field</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger id="framework" className="w-full">
-                      <SelectValue placeholder="Select your field" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent position="popper">
-                    <ScrollArea className="w-full h-40 px-4">
-                      {COMPANY_FIELD.map((companyField) => (
-                        <SelectItem
-                          key={companyField.name}
-                          value={companyField.name}
-                        >
-                          {companyField.name}
-                        </SelectItem>
-                      ))}
-                    </ScrollArea>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
+            name="company_field"
+            label="Company field"
+            options={field}
+            placeholder="Select your field"
           />
-          <FormField
+          <TextInput
             control={form.control}
             name="year"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Founded year</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} className="w-full" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            placeholder=""
+            label="Founded year"
           />
         </div>
         <div className="mt-5">
-          <FormField
+          <TagInput
             control={form.control}
             name="tags"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Tag countries that can use your startups</FormLabel>
-                <FormControl>
-                  <TagsInput
-                    value={tags}
-                    onChange={setTags}
-                    tagProps={{ className: 'react-tagsinput-tag info' }}
-                    inputProps={{ placeholder: 'Add a tag' }}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Tag countries that can use your startups"
           />
         </div>
         <div className="mt-5">
-          <FormField
-            control={form.control}
-            name="image"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Upload logo</FormLabel>
-                <FormControl>
-                  <div className="flex gap-3">
-                    {imageUrl.length ? (
-                      <div>
-                        <Image
-                          src={imageUrl}
-                          alt="logo pic"
-                          width={90}
-                          height={100}
-                        />
-                      </div>
-                    ) : null}
-                    <UploadButton
-                      className="upload-btn"
-                      endpoint="imageUploader"
-                      onClientUploadComplete={(res) => {
-                        console.log('Files: ', res);
-                        setImageUrl(res[0].url);
-                        toast({
-                          title: 'Uploded succesfully',
-                          description: 'Logo uploaded successfully',
-                        });
-                      }}
-                      onUploadError={(error: Error) => {
-                        toast({
-                          title: 'Error',
-                          description: (`ERROR! ${error.message}`),
-                        });
-                      }}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <ImageInput control={form.control} name="image" label="Upload logo" />
         </div>
         <div className="mt-5">
           <Button

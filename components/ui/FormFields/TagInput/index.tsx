@@ -6,29 +6,18 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { Control } from 'react-hook-form';
+import TagsInput from 'react-tagsinput';
 
-interface TextInputProps {
+interface TagInputProps {
   control: Control<any>;
   name: string;
   label: string;
-  placeholder: string;
   error?: string;
-  type?: 'text' | 'email' | 'password';
   id?: string;
-  className?: string;
 }
 
-const TextInput: FC<TextInputProps> = ({
-  type = 'text',
-  control,
-  name,
-  label,
-  placeholder,
-  id,
-  className,
-}) => {
+const TagInput: FC<TagInputProps> = ({ control, name, label, id }) => {
   return (
     <FormField
       control={control}
@@ -37,13 +26,11 @@ const TextInput: FC<TextInputProps> = ({
         <FormItem className="w-full">
           <FormLabel htmlFor={id || name}>{label}</FormLabel>
           <FormControl>
-            <Input
-              placeholder={placeholder}
-              {...field}
-              className={className}
-              type={type}
-              aria-label={label}
-              id={id || name}
+            <TagsInput
+              value={field.value ? field.value.split(',') : []} // Convert the string to an array
+              onChange={(tags) => field.onChange(tags.join(','))} // Convert the array back to a string
+              tagProps={{ className: 'react-tagsinput-tag info' }}
+              inputProps={{ placeholder: 'Add a tag' }}
             />
           </FormControl>
           <FormMessage />
@@ -53,4 +40,4 @@ const TextInput: FC<TextInputProps> = ({
   );
 };
 
-export default TextInput;
+export default TagInput;
