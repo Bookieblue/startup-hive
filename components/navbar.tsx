@@ -4,8 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from './ui/button';
 
+
 const Navbar = () => {
+
   const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <nav
       className="flexBetween max-container
@@ -21,14 +24,14 @@ const Navbar = () => {
         />
       </Link>
       <div className="flexEnd gap-5 lg:gap-10">
-          <Image
-            src="/search-icon.svg"
-            alt="arrowdown"
-            width={20}
-            height={20}
-            className="cursor-pointer"
-          />
-          <ul className="hidden h-full gap-5 lg:flex">
+        <Image
+          src="/search-icon.svg"
+          alt="arrowdown"
+          width={20}
+          height={20}
+          className="cursor-pointer"
+        />
+        <ul className="hidden h-full gap-5 lg:flex">
           <div className="flex gap-1 cursor-pointer">
             <Image
               src="/african-icon.svg"

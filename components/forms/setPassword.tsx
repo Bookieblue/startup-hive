@@ -40,7 +40,7 @@ const SetPasswordForm = () => {
   });
 
   const [isLoading, setIsLoading] = React.useState(false);
-  
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
     toast({
@@ -85,7 +85,12 @@ const SetPasswordForm = () => {
           )}
         />
         <div className="mt-3 md:mt-5 ">
-          <Button type="submit" title="Submit Now" variant="btn_lightred"  isLoading={isLoading} />
+          <Button
+            type="submit"
+            title="Submit Now"
+            variant="btn_lightred"
+            isLoading={isLoading}
+          />
         </div>
       </form>
     </Form>

@@ -30,7 +30,7 @@ const ResetPasswordForm = () => {
   });
 
   const [isLoading, setIsLoading] = React.useState(false);
-  
+
   const onSubmit = (values: z.infer<typeof FormSchema>) => {
     setIsLoading(true);
     toast({
@@ -54,7 +54,12 @@ const ResetPasswordForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" title="Submit Now" variant="btn_lightred"  isLoading={isLoading}/>
+        <Button
+          type="submit"
+          title="Submit Now"
+          variant="btn_lightred"
+          isLoading={isLoading}
+        />
       </form>
     </Form>
   );

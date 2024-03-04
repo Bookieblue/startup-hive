@@ -1,34 +1,27 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
+import { useSelector, useDispatch } from 'react-redux';
+import { TextInput } from '../ui/FormFields';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { LoginSchema } from '@/lib/models/auth/schema';
+import { useMutateLogin } from '@/lib/models/auth/hooks';
+import { setCookie } from 'nookies';
 import { toast } from '@/components/ui/use-toast';
-
-const FormSchema = z.object({
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Incorrect email address'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must have 8 characters'),
-});
+import { errorFormat } from '@/lib/utils';
+import { saveLocalStorage } from '@/lib/core/localStorageUtil';
+import { HIVE_ACCOUNT_EMAIL, HIVE_ACCESS_TOKEN } from '@/lib/core/constant';
+import { updateUserProfile, setIsLoggedIn } from '@/lib/store/reducer';
 
 const LoginForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -36,45 +29,57 @@ const LoginForm = () => {
   });
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const { mutate: mutateLogin } = useMutateLogin({});
+
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setIsLoading(true);
-    toast({
-      title: 'Submitted succesfully',
-      description: 'User login successfully',
+    mutateLogin(values, {
+      onSuccess: (response) => {
+        setIsLoading(false);
+        if (response?.is_email_verification_required) {
+          toast({
+            title: 'ERROR',
+            description: response.message,
+          });
+          saveLocalStorage(HIVE_ACCOUNT_EMAIL, values.email);
+          router.push('/account-confirmation');
+          return;
+        }
+        setCookie(null, HIVE_ACCESS_TOKEN, response.token.access);
+        dispatch(updateUserProfile(response.user));
+        dispatch(setIsLoggedIn(true));
+        toast({
+          title: 'SUCCESS',
+          description: response.message,
+        });
+        router.push('/');
+      },
+      onError: (error: any) => {
+        setIsLoading(false);
+        const message = errorFormat(error);
+        toast({
+          title: 'ERROR',
+          description: message,
+        });
+      },
     });
   };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
-        <FormField
+        <TextInput
           control={form.control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Your Email</FormLabel>
-              <FormControl>
-                <Input placeholder="eg. yourname@gmail.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Email"
+          placeholder="eg. yourname@gmail.com"
+          type="email"
         />
-        <FormField
+        <TextInput
           control={form.control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Your Password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Enter your password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Password"
+          placeholder="Enter your password"
+          type="password"
         />
         <p className="medium-16 mt-5 md:mt-5">
           Forgot password{' '}
@@ -82,7 +87,12 @@ const LoginForm = () => {
             Reset here
           </Link>
         </p>
-        <Button type="submit" title="Submit Now" variant="btn_lightred" isLoading={isLoading} />
+        <Button
+          type="submit"
+          title="Submit Now"
+          variant="btn_lightred"
+          isLoading={isLoading}
+        />
       </form>
     </Form>
   );
