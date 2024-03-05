@@ -1,17 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import Logo from '@/components/ui/logo';
 import StartupVerifyOtpForm from '@/components/forms/startupVerifyOtp';
 
 const ConfirmOtp = () => {
   return (
-    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:gap-10 2xl:pt-10">
+    <section className="max-container padding-container bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 ">
     <div>
-      <div className="african-print" />
-      <Logo />
-      <div className="lg:w-[50%]">
-    <div className="pt-10">
+    <div className="african-print mr-28 mt-32" />
+    <div className="lg:w-[55%]">
+    <div className="pt-14">
       <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
         Confirm OTP
       </h2>

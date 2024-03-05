@@ -1,5 +1,6 @@
 "use client"
-import SubmitStartUpForm from '@/components/forms/submitStartup';
+
+import SubmitStartupForm from '@/components/forms/submitStartup';
 import React from 'react';
 
 
@@ -19,7 +20,7 @@ const page = () => {
         <p className="regular-18 lg:regular-20 ">
         We’re happy you’re building amazing thing in Africa, let the world discover your innovation.{' '}
           </p>
-        <SubmitStartUpForm />
+        <SubmitStartupForm />
       </div>
     </div>
     </div>
