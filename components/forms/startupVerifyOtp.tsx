@@ -8,10 +8,9 @@ import { toast } from '@/components/ui/use-toast';
 import Button from '../ui/button';
 import { TextInput } from '@/components/ui/FormFields';
 import { otpSchema } from '@/lib/models/auth/schema';
-import { useMutateEmailConfirmation } from '@/lib/models/auth/hooks';
-import { errorFormat } from '@/lib/utils';
 
-const ConfirmOtpForm = () => {
+
+const StartupVerifyOtpForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
   const form = useForm<z.infer<typeof otpSchema>>({
@@ -21,30 +20,20 @@ const ConfirmOtpForm = () => {
     },
   });
 
-  const { mutate: mutateEmailConfirmation } = useMutateEmailConfirmation();
+
 
   const onSubmit = (values: z.infer<typeof otpSchema>) => {
     setIsLoading(true);
-    mutateEmailConfirmation(values, {
-      onSuccess: () => {
         setIsLoading(false);
         toast({
           title: 'SUCCESS',
           description: 'Email verified successfully',
         });
         form.reset();
-        router.push('/login');
-      },
-      onError: (error: any) => {
-        setIsLoading(false);
-        const message = errorFormat(error);
-        toast({
-          title: 'ERROR',
-          description: message,
-        });
-      },
-    });
-  };
+        router.push('/startup-onboarding/onboard');
+      }
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
@@ -65,4 +54,4 @@ const ConfirmOtpForm = () => {
   );
 };
 
-export default ConfirmOtpForm;
+export default StartupVerifyOtpForm ;
