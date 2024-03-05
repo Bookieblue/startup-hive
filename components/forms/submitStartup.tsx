@@ -59,7 +59,7 @@ const SubmitStartupForm = () => {
           <TextInput
             control={form.control}
             name="email"
-            placeholder="eg. yourname@gmail.com"
+            placeholder="eg. support@domain.com"
             label="Corporate email"
           />
           <SelectInput
