@@ -1,8 +1,8 @@
 "use client"
-import StartUpServicesForm from '@/components/forms/startupServices';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import StartUpServicesForm from '@/components/forms/startUpServices';
 
 
 const page = () => {
