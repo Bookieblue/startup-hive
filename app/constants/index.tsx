@@ -244,3 +244,74 @@ export const COMPANY_FIELD = [
 ] as {
   name: string;
 }[];
+
+
+  // TRENDING STARTUPS SECTION
+  export const TRENDING_STARTUPS = [
+    {
+      name: 'Opay',
+      icon: '/opay.svg',
+      field: 'Fintech',
+      location: 'Lagos, Nigeria',
+      description:
+        'Automated security compliance for your business in weeks',
+    },
+    {
+      name: 'Jumia',
+      icon: '/jumia.svg',
+      field: 'Ecommerce',
+      location: 'Lagos, Nigeria',
+      description:
+        'Automated security compliance for your business in weeks',
+    },
+    {
+      name: 'Eden Life',
+      icon: '/eden.svg',
+      field: 'Mobile Food',
+      location: 'Lagos, Nigeria',
+      description:
+        'Automated security compliance for your business in weeks',
+    },
+
+  ];
+
+    // TRENDING STARTUPS SECTION
+    export const STARTUPS = [
+      {
+        name: 'Opay',
+        icon: '/opay.svg',
+        field: 'Fintech',
+        location: 'Lagos, Nigeria',
+        description:
+          'Automated security compliance for your business in weeks',
+        likes: 78
+      },
+      {
+        name: 'Jumia',
+        icon: '/jumia.svg',
+        field: 'Ecommerce',
+        location: 'Lagos, Nigeria',
+        description:
+        'Automated security compliance for your business in weeks',
+        likes: 1243
+      },
+      {
+        name: 'M-Pesa',
+        icon: '/m-pesa.svg',
+        field: 'Fintech',
+        location: 'Nairobi, Kenya',
+        description:
+          'Automated security compliance for your business in weeks',
+        likes: 1150
+      },
+      {
+        name: 'Eden Life',
+        icon: '/eden.svg',
+        field: 'Mobile Food',
+        location: 'Lagos, Nigeria',
+        description:
+          'Automated security compliance for your business in weeks',
+        likes: 150
+      },
+  
+    ];

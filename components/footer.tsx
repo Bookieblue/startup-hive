@@ -5,7 +5,7 @@ const Footer = () => {
 };
 
 export const InnerFooter = () => {
-  return <footer className="bg-black h-32 w-full"></footer>;
+  return <footer className="bg-gray-20 h-20 w-full"></footer>;
 };
 
 export default Footer;
