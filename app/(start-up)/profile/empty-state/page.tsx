@@ -6,8 +6,8 @@ import { TRENDING_STARTUPS } from '@/app/constants';
 
 const page = () => {
   return (
-    <section className="max-container padding-container flex justify-between bg-cream-50 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 ">
-      <div className="pt-14 w-[70%]">
+    <section className="max-container padding-container flex flex-col lg:flex-row lg:justify-between bg-cream-50 pt-7 lg:px-24 lg:gap-10 2xl:pt-10 ">
+      <div className="pt-6 lg:pt-14 lg:w-[55%]">
         <div className="flex gap-5">
           <Image
             src="/profile-pic.svg"
@@ -23,7 +23,7 @@ const page = () => {
             <p className="regular-16">Nigeria</p>
           </div>
         </div>
-        <p className="bg-gray-20 text-cream-50 w-[400px] py-3 pl-5 rounded-md mt-5">
+        <p className="bg-gray-20 text-cream-50 sm:w-[400px] py-3 pl-5 rounded-md mt-5">
           Note! If you own a Startup, publish it from{' '}
           <Link href="/" className="text-yellow-50 underline">
             here
@@ -42,7 +42,7 @@ const page = () => {
           </TabsList>
           <TabsContent
             value="my-startups"
-            className="flex flex-col gap-2 mt-12"
+            className="flex flex-col gap-2 mt-8 lg:mt-12"
           >
             <Image src="/emoji.svg" alt="emoji" width={30} height={10} />
             No personal startup published yet!
@@ -53,13 +53,13 @@ const page = () => {
           </TabsContent>
         </Tabs>
       </div>
-      <div className="bg-gray-20 w-[40%] h-full p-5 mb-10">
+      <div className="bg-gray-20 lg:w-[35%] h-full p-5 mb-10 mt-16 lg:mt-0">
         <Image
           src="/ad-pic.svg"
           alt="ads"
           width={350}
           height={100}
-          className="pt-[70px]"
+          className="lg:pt-[70px]"
         />
         <h3 className="text-white medium-20 mt-10 ">
           Discover trending Startups

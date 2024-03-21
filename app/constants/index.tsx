@@ -284,7 +284,7 @@ export const COMPANY_FIELD = [
         location: 'Lagos, Nigeria',
         description:
           'Automated security compliance for your business in weeks',
-        likes: 78
+        supports: 78
       },
       {
         name: 'Jumia',
@@ -293,7 +293,7 @@ export const COMPANY_FIELD = [
         location: 'Lagos, Nigeria',
         description:
         'Automated security compliance for your business in weeks',
-        likes: 1243
+        supports: 1243
       },
       {
         name: 'M-Pesa',
@@ -302,7 +302,7 @@ export const COMPANY_FIELD = [
         location: 'Nairobi, Kenya',
         description:
           'Automated security compliance for your business in weeks',
-        likes: 1150
+        supports: 1150
       },
       {
         name: 'Eden Life',
@@ -311,7 +311,7 @@ export const COMPANY_FIELD = [
         location: 'Lagos, Nigeria',
         description:
           'Automated security compliance for your business in weeks',
-        likes: 150
+        supports: 150
       },
   
     ];
