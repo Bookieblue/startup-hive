@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar';
+
 import React, { FC, ReactNode } from 'react';
 interface FormLayoutProps {
   children: ReactNode;

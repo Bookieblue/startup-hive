@@ -275,7 +275,60 @@ export const COMPANY_FIELD = [
 
   ];
 
-    // TRENDING STARTUPS SECTION
+  // COUNTRIES ICON SECTION
+    export const  STARTUPS_COUNTRIES = [
+      {
+        name: 'All',
+        icon:  '/african-icon.svg',
+        url: '/',
+      },
+      {
+        name: 'Nigeria',
+        icon: '/nigeria.svg',
+        url: '/',
+      },
+      {
+        name: 'South Africa',
+        icon:  '/south-africa.svg',
+        url: '/',
+      },
+      {
+        name: 'Kenya',
+        icon:  '/kenya.svg',
+        url: '/',
+      },
+      {
+        name: 'Eygpt',
+        icon: '/eygpt.svg',
+        url: '/',
+      },
+      {
+        name: 'Morrocco',
+        icon: '/morrocco.svg',
+        url: '/',
+      },
+      {
+        name: 'Tanzania',
+        icon: '/tanzania.svg',
+        url: '/',
+      },
+
+      {
+        name: 'Algeria',
+        icon: '/algeria.svg',
+        url: '/',
+      },
+  
+      {
+        name: 'Ghana',
+        icon: '/ghana.svg',
+        url: '/',
+      },
+  
+    ];
+
+
+    //STARTUPS SECTION
     export const STARTUPS = [
       {
         name: 'Opay',
@@ -315,3 +368,149 @@ export const COMPANY_FIELD = [
       },
   
     ];
+
+       //EXPLORE STARTUPS SECTION
+       export const EXPLORE_STARTUPS = [
+        {
+          name: 'Opay',
+          icon: '/opay.svg',
+          field: 'Fintech',
+          location: 'Lagos, Nigeria',
+          description:
+            'Automated security compliance for your business in weeks',
+          supports: 1110,
+          url: '/single-startup'
+        },
+        {
+          name: 'Jumia',
+          icon: '/jumia.svg',
+          field: 'Ecommerce',
+          location: 'Lagos, Nigeria',
+          description:
+          'Automated security compliance for your business in weeks',
+          supports: 150,
+          url: '/single-startup'
+        },
+        {
+          name: 'M-Pesa',
+          icon: '/m-pesa.svg',
+          field: 'Fintech',
+          location: 'Nairobi, Kenya',
+          description:
+            'Automated security compliance for your business in weeks',
+          supports: 110,
+          url: '/single-startup'
+        },
+        {
+          name: 'Eden Life',
+          icon: '/eden.svg',
+          field: 'Mobile Food',
+          location: 'Lagos, Nigeria',
+          description:
+            'Automated security compliance for your business in weeks',
+          supports: 200,
+          url: '/single-startup'
+        },
+        {
+          name: 'Alt School',
+          icon: '/altschool.svg',
+          field: 'Tech School',
+          location: 'Lagos, Nigeria',
+          description:
+            'Automated security compliance for your business in weeks',
+          supports: 9,
+          url: '/single-startup'
+        },
+        {
+          name: 'Paystack',
+          icon: '/paystack.svg',
+          field: 'Fintech',
+          location: 'Lagos, Nigeria',
+          description:
+            'Automated security compliance for your business in weeks',
+          supports: 2,
+          url: '/single-startup'
+        },
+    
+      ];
+
+
+      //EXPLORE TRENDING COMPANIES  SECTION
+      export const TRENDING_COMPANIES = [
+        {
+          name: 'Paystack',
+          icon: '/paystack.svg',
+          description:
+            'We’re constantly using, reviewing and comparing all tools ',
+          url: ''
+        },
+        {
+          name: 'Flutterwave',
+          icon: '/flutterwave.svg',
+          description:
+          'We’re constantly using, reviewing and comparing all tools',
+          url: ''
+        },
+        {
+          name: 'Allawee',
+          icon: '/allawee.svg',
+          description:
+            'We’re constantly using, reviewing and comparing all tools',
+          url: ''
+        },
+        {
+          name: 'BrassHQ',
+          icon: '/brasshq.svg',
+          description:
+            'We’re constantly using, reviewing and comparing all tools',
+          url: ''
+        },
+    
+      ];
+  
+
+    //FOOTER SOCIAL LINK SECTION
+    export const SOCIAL_LINKS = [
+
+      {
+        icon: '/instagram.svg',
+        url: '/'
+      },
+      {
+        icon: '/twitter.svg',
+        url: '/'
+      },
+      {
+        icon: '/linkedin.svg',
+        url: '/'
+      },
+      {
+        icon: '/facebook.svg',
+        url: '/'
+      }
+
+  ]
+
+    export const FOOTER_INFO_LINKS = [
+
+      {
+        title: 'Submit Startup',
+        url: '/submit-startup'
+      },
+      {
+        title: 'Suggest Startup',
+        url: '/suggest-startup'
+      },
+      {
+        title: 'Feedback',
+        url: '/Feedback'
+      }
+
+  ]
+
+
+  export const FOOTER_LINKS = [
+        'Contact Us',
+        'Terms of Use',
+        'Privacy Policy',
+  ]
