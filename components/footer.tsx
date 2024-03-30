@@ -36,8 +36,8 @@ const Footer = () => {
               key={index}
               className={
                 index === 1
-                  ? 'flex regular-16 text-lightred-50'
-                  : 'flex regular-16 text-gray-30'
+                  ? 'flex regular-12 md:regular-14 lg:regular-16 text-lightred-50'
+                  : 'flex regular-12 md:regular-14 lg:regular-16 text-gray-30'
               }
             >
               {link.title}
@@ -53,13 +53,13 @@ const Footer = () => {
         </div>
       </div>
       <hr className='border-gray-40'/>
-      <div className="flexBetween mt-5 mx-24">
-        <p className="regular-14 text-gray-20">
+      <div className="flexBetween mt-3 lg:mt-5 flex-col lg:flex-row lg:mx-24">
+        <p className="regular-12 md:regular-14 text-gray-20 mb-3 lg:mt-0">
           © 2023 The Startup Hive. All rights reserved.
         </p>
         <div className="flex gap-4">
           {FOOTER_LINKS.map((link) => (
-            <Link href="/" key={link} className="regular-14 text-gray-30">
+            <Link href="/" key={link} className=" regular-12 md:regular-14 text-gray-30">
               {link}
             </Link>
           ))}

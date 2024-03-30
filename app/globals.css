@@ -183,6 +183,10 @@ h6 {
     @apply text-[26px] font-[500];
   }
 
+  .medium-54 {
+    @apply text-[54px] font-[500];
+  }
+  
   .bold-88 {
     @apply text-[88px] font-[700] leading-[120%];
   }

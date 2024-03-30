@@ -32,7 +32,7 @@ export const ExploreStartupItem = ({
       <div className="flex justify-between items-center pt-5">
         <div className="flex">
           <div className="rounded-full pr-3">
-            <Image src={icon} alt="map" width={50} height={28} />
+            <Image src={icon} alt="map" width={50} height={28} className='max-[600px]:w-[150px]'/>
           </div>
           <div>
             <div className="flex gap-2">
@@ -43,9 +43,9 @@ export const ExploreStartupItem = ({
             <p className="text-white regular-12">{location}</p>
           </div>
         </div>
-        <hr className="border-l border-gray-30 h-20" />
+        <hr className="border-l border-gray-30 h-20 mr-2 lg:mr-0" />
         <div
-          className="flex flex-col items-center gap-3 mr-14"
+          className="flex flex-col items-center gap-3 mr-5 lg:mr-14"
           onClick={SupportIcon}
         >
           {isSupport ? (
