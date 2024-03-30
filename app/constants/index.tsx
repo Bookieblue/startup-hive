@@ -279,7 +279,7 @@ export const COMPANY_FIELD = [
     export const  STARTUPS_COUNTRIES = [
       {
         name: 'All',
-        icon:  '/african-icon.svg',
+        icon:  '/african-icon2.svg',
         url: '/',
       },
       {
