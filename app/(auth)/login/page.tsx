@@ -9,7 +9,7 @@ import Logo from '@/components/ui/logo';
 
 const Login = () => {
   return (
-    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10">
+    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:gap-10 2xl:pt-10">
       <div>
       <div className="african-print" />
        <Logo />

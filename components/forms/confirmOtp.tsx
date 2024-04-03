@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -14,14 +7,19 @@ import * as z from 'zod';
 import { Input } from '../ui/input';
 import { toast } from '@/components/ui/use-toast';
 import Button from '../ui/button';
+import { TextInput } from '@/components/ui/FormFields';
 import { otpSchema } from '@/lib/models/auth/schema';
 import { useMutateEmailConfirmation } from '@/lib/models/auth/hooks';
 import { errorFormat } from '@/lib/utils';
+
 const ConfirmOtpForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
   const form = useForm<z.infer<typeof otpSchema>>({
     resolver: zodResolver(otpSchema),
+    defaultValues: {
+      otp: '',
+    },
   });
 
   const { mutate: mutateEmailConfirmation } = useMutateEmailConfirmation();
@@ -32,7 +30,7 @@ const ConfirmOtpForm = () => {
       onSuccess: () => {
         setIsLoading(false);
         toast({
-          title: 'Success',
+          title: 'SUCCESS',
           description: 'Email verified successfully',
         });
         form.reset();
@@ -42,7 +40,7 @@ const ConfirmOtpForm = () => {
         setIsLoading(false);
         const message = errorFormat(error);
         toast({
-          title: 'Error',
+          title: 'ERROR',
           description: message,
         });
       },
@@ -51,18 +49,11 @@ const ConfirmOtpForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
-        <FormField
+        <TextInput
           control={form.control}
           name="otp"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Enter OTP</FormLabel>
-              <FormControl>
-                <Input placeholder="910276" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Enter OTP"
+          placeholder="910276"
         />
         <Button
           type="submit"

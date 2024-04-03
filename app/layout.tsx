@@ -1,9 +1,9 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
-import Navbar from '@/components/navbar';
 import { Toaster } from '@/components/ui/toaster';
 import TansStackProvider from '@/components/providers/TanStackProvider';
+
 
 export const metadata: Metadata = {
   title: 'Startup Hive App',
@@ -19,12 +19,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <TansStackProvider>
-          <main
-            className="overflow-hidden"
-          >
-            {children}
-          </main>
-          <Toaster />
+            <main className="overflow-hidden">{children}</main>
+            <Toaster />
         </TansStackProvider>
       </body>
     </html>

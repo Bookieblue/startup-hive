@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import { withUt } from "uploadthing/tw";
+export default withUt({
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -32,6 +33,7 @@ module.exports = {
           20: '#333333',
           30: '#545151',
           40: '#D4CFCF',
+          50: '#1A1A1A',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -84,7 +86,7 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       backgroundImage: {
-        'bg-img': "url('/africa-print.svg')"
+        'bg-img': "url('/africa-print.svg')",
       },
       keyframes: {
         'accordion-down': {
@@ -103,4 +105,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+});
