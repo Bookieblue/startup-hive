@@ -134,6 +134,6 @@ export const ContactFormSchema = z
       .string()
       .min(1, 'Email is required')
       .email('Incorrect email address'),
-    message: z.string().min(8, 'message is required'),
+    message: z.string().min(8, 'Message is required'),
     country: z.string(),
   });
