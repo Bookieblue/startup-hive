@@ -100,3 +100,27 @@ export const SocialLinksSchema = z.object({
   discord: z.string().optional(),
   twitter: z.string().optional(),
 });
+
+//Claim startup schema
+export const ClaimStartupSchema = z.object({
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Incorrect email address'),
+    startup: z
+    .string()
+    .min(1, 'Startup Name is required'),
+    domain: z
+    .string()
+    .min(1, 'Website URL is required'), 
+}).refine(
+  (data) => {
+    const emailDomain = data.email?.split('@')[1];
+    const websiteUrl = data.domain?.toLowerCase();
+    return emailDomain && websiteUrl && emailDomain.includes(websiteUrl);
+  },
+  {
+    path: ['email'],
+    message: 'Website URL must be contained in the corporate email',
+  },
+);
