@@ -45,7 +45,7 @@ export const ExploreStartupItem = ({
         </div>
         <hr className="border-l border-gray-30 h-20 mr-2 lg:mr-0" />
         <div
-          className="flex flex-col items-center gap-3 mr-5 lg:mr-14"
+          className="flex flex-col items-center gap-3 max-md:mr-5 xl:mr-14"
           onClick={SupportIcon}
         >
           {isSupport ? (
