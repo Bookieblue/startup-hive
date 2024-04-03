@@ -124,3 +124,16 @@ export const ClaimStartupSchema = z.object({
     message: 'Website URL must be contained in the corporate email',
   },
 );
+
+//contact schema
+export const ContactFormSchema = z
+  .object({
+    first_name: z.string().min(1, 'First name is required'),
+    last_name: z.string().min(1, 'Last name is required'),
+    email: z
+      .string()
+      .min(1, 'Email is required')
+      .email('Incorrect email address'),
+    message: z.string().min(8, 'message is required'),
+    country: z.string(),
+  });
