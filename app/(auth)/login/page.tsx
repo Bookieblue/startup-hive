@@ -9,7 +9,7 @@ import Logo from '@/components/ui/logo';
 
 const Login = () => {
   return (
-    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:px-24 lg:gap-10 2xl:pt-10">
+    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:gap-10 2xl:pt-10">
       <div>
       <div className="african-print" />
        <Logo />
@@ -28,7 +28,7 @@ const Login = () => {
             Error! Seems there is an error in the detail you submitted.
           </p>
           <LoginForm />
-          <p className="medium-16 mt-10 lg:pb-32">
+          <p className="medium-16 mt-10 mb-14 lg:pb-32">
             Don’t have an account?{' '}
             <Link href="./signup" className="text-lightred-50">
               Create account here
