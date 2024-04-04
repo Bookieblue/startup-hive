@@ -503,7 +503,7 @@ export const COMPANY_FIELD = [
       },
       {
         title: 'Feedback',
-        url: '/Feedback'
+        url: '/contact-us'
       }
 
   ]

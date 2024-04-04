@@ -13,9 +13,12 @@ import { TrendingCompanyItem } from '@/components/trending-companies/page';
 import Button from '@/components/ui/button';
 import React from 'react';
 import { StartupCountriesItem } from '@/components/startup-countries/page';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <>
       <Navbar />
@@ -64,6 +67,7 @@ export default function Home() {
           title="Suggest Startup"
           variant="btn_lightred"
           isLoading={isLoading}
+          onClick={() => router.push('/suggest-startup')}
         />
         <p className="mb-20 regular-14 lg:regular-16 lg:mb-10">Takes just 2 min. 100% free</p>
       </section>
