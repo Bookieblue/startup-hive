@@ -22,7 +22,7 @@ interface OptionType {
 }
 
 interface SelectInputProps {
-  control: Control<any>;
+  control ?: Control<any>;
   name: string;
   label: string;
   placeholder: string;
