@@ -15,6 +15,7 @@ import React from 'react';
 import { StartupCountriesItem } from '@/components/startup-countries/page';
 import { useRouter } from 'next/navigation';
 
+
 export default function Home() {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);

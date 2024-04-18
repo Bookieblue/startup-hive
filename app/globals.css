@@ -228,6 +228,7 @@ h6 {
   }
 }
 
+
  /* afr1can print background image */
  .african-print {
   @apply absolute right-0 top-0 h-[130vh] w-screen bg-bg-img bg-cover hidden lg:flexEnd lg:block lg:w-[34%] z-10 ;
@@ -249,7 +250,7 @@ h6 {
 /* styles for input tags */
 .react-tagsinput {
   @apply bg-transparent border border-[#D4CFCF] overflow-hidden pl-[5px] pt-[10px] pb-[5px] rounded-sm
-}
+  }
 
 .react-tagsinput--focused {
   @apply border-[#D4CFCF]

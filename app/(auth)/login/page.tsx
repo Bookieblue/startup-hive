@@ -1,11 +1,9 @@
-
 'use client';
 
 import Link from 'next/link';
 import React from 'react';
 import LoginForm from '@/components/forms/login';
 import Logo from '@/components/ui/logo';
-
 
 const Login = () => {
   return (
