@@ -9,7 +9,7 @@ type ButtonProps = {
   full?: boolean;
   isLoading: boolean;
   options?: object;
-  onClick : () => void;
+  onClick? : () => void;
 };
 const Button = ({
   type,

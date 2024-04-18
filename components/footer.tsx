@@ -18,7 +18,7 @@ const Footer = () => {
         </p>
         <div className="flex -space-x-4 gap-6 overflow-hidden">
           {SOCIAL_LINKS.map((link) => (
-            <Link href={link.url}>
+            <Link href={link.url} key={link.icon}>
             <Image
               src={link.icon}
               key={link.icon}

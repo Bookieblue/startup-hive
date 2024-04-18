@@ -80,7 +80,7 @@ export default function Home() {
           </h3>
           <div className="mt-6 flex flex-col gap-4 lg:flex-row lg:gap-10 lg:mt-14">
             {TRENDING_COMPANIES.map((company) => (
-              <div className="hover:bg-gray-30 hover:shadow-md hover:rounded-sm transform hover:scale-105 transition duration-300 ease-in-out">
+              <div key={company.name} className="hover:bg-gray-30 hover:shadow-md hover:rounded-sm transform hover:scale-105 transition duration-300 ease-in-out">
               <TrendingCompanyItem
                 key={company.name}
                 name={company.name}
