@@ -2,9 +2,15 @@
 
 import Link from 'next/link';
 import ConfirmOtpForm from '@/components/forms/confirmOtp';
+import Logo from '@/components/ui/logo';
 
 const ConfirmOtp = () => {
   return (
+    <section className="max-container padding-container pb-30 bg-cream-50 gap-10 pt-7 lg:gap-10 2xl:pt-10">
+    <div>
+      <div className="african-print" />
+      <Logo />
+      <div className="lg:w-[50%]">
     <div className="pt-10">
       <h2 className="text-gray-20 regular-24 lg:regular-34 pb-3 md:pb-5">
         Confirm OTP
@@ -23,6 +29,9 @@ const ConfirmOtp = () => {
         </Link>
       </p>
     </div>
+    </div>
+    </div>
+    </section>
   );
 };
 

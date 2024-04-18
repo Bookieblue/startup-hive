@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { TextInput } from '../ui/FormFields';
 
 const FormSchema = z.object({
   email: z
@@ -41,18 +34,11 @@ const ResetPasswordForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
-        <FormField
+        <TextInput
           control={form.control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Your Email</FormLabel>
-              <FormControl>
-                <Input placeholder="eg. yourname@gmail.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          placeholder="eg. yourname@gmail.com"
+          label="Your Email"
         />
         <Button
           type="submit"

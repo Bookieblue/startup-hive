@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+
 type ButtonProps = {
   type: 'button' | 'submit';
   title: string;
@@ -8,6 +9,7 @@ type ButtonProps = {
   full?: boolean;
   isLoading: boolean;
   options?: object;
+  onClick? : () => void;
 };
 const Button = ({
   type,
@@ -17,6 +19,7 @@ const Button = ({
   full,
   isLoading = false,
   options,
+  onClick,
 }: ButtonProps) => {
   return (
     <button
@@ -25,12 +28,14 @@ const Button = ({
       }`}
       type={type}
       {...options}
+      onClick={onClick}
     >
       {icon && <Image src={icon} alt={title} width={24} height={24} />}
 
       <label className="bold-16 whitespace-nowrap cursor-pointer">
         {isLoading ? 'Loading...' : title}
       </label>
+     
     </button>
   );
 };

@@ -1,34 +1,21 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
+import { TextInput } from '../ui/FormFields';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { LoginSchema } from '@/lib/models/auth/schema';
+import { useMutateLogin } from '@/lib/models/auth/hooks';
 import { toast } from '@/components/ui/use-toast';
 
-const FormSchema = z.object({
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Incorrect email address'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must have 8 characters'),
-});
 
 const LoginForm = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const router = useRouter();
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -36,45 +23,32 @@ const LoginForm = () => {
   });
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const { mutate: mutateLogin } = useMutateLogin({});
+
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setIsLoading(true);
-    toast({
-      title: 'Submitted succesfully',
-      description: 'User login successfully',
-    });
-  };
+        setIsLoading(false);
+          toast({
+            title: 'ERROR',
+            description: 'message',
+          });
+        }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5 space-y-4">
-        <FormField
+        <TextInput
           control={form.control}
           name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Your Email</FormLabel>
-              <FormControl>
-                <Input placeholder="eg. yourname@gmail.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Email"
+          placeholder="eg. yourname@gmail.com"
+          type="email"
         />
-        <FormField
+        <TextInput
           control={form.control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Your Password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Enter your password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          label="Password"
+          placeholder="Enter your password"
+          type="password"
         />
         <p className="medium-16 mt-5 md:mt-5">
           Forgot password{' '}
@@ -91,6 +65,6 @@ const LoginForm = () => {
       </form>
     </Form>
   );
-};
+  };
 
-export default LoginForm;
+export default LoginForm

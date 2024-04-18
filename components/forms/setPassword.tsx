@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Input } from '../ui/input';
 import Button from '../ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { TextInput } from '../ui/FormFields';
 
 const FormSchema = z
   .object({
@@ -54,35 +47,19 @@ const SetPasswordForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="mt-5 space-y-4 mb-28 lg:mb-48 "
       >
-        <FormField
+        <TextInput
           control={form.control}
           name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Set password</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="Set password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          placeholder="Set password "
+          label="Set password"
+          type="password"
         />
-        <FormField
+        <TextInput
           control={form.control}
           name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Confirm password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+          placeholder="Confirm password"
+          label="Confirm password"
+          type="password"
         />
         <div className="mt-3 md:mt-5 ">
           <Button
